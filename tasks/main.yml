@@ -1,0 +1,14 @@
+---
+- name: Clone the GitHub repository
+  git:
+    repo: 'https://github.com/deadbok/libvirt-hook-qemu.git'
+    dest: /tmp/libvirt-nat-hook
+    depth: 1
+
+- name: Install the hook
+  command: make install
+  args:
+    creates: /etc/libvirt/hooks/hook.py
+    chdir: /tmp/libvirt-nat-hook
+  become: yes
+...
